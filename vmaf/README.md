@@ -1,8 +1,10 @@
 # VMAF
 
-[VMAF](https://github.com/Netflix/vmaf) 能够比较 目标视频 和 参考视频 的相似度，并给出一个数值评分。
+[VMAF](https://github.com/Netflix/vmaf) 能够比较 目标视频 和 参考视频 的相似度，并给出数值评分（0~1）
 
 ## 实验
+
+### 录制
 
 视频内容为已编排好自动播放的 PPT，开头添加了一个空白页，便于后续截取视频进行对齐。
 
@@ -18,6 +20,8 @@
 
 录制完成后得到 local.mp4 和 remote.mp4，对它们进行剪辑，确保开头的空白页和最后的黑屏被去除，同时尽量保证两个文件时长相近（无论如何一定要确保参考视频的长度更长）
 
+### 评分
+
 执行 `ffmpeg -i local.mp4 -pix_fmt yuv420p local.y4m` 将视频转化为原始像素格式。
 
-执行 `vmaf -r ./assets/local.y4m -d ./assets/remote.y4m --csv -o result.csv --threads 4` 运行 vmaf 评测工具。命令行会输出一个总体评分。
+执行 `vmaf -r ../assets/local.y4m -d ../assets/remote.y4m --csv -o ../results/vmaf.csv --threads 4` 运行 vmaf 评测工具。命令行会输出一个总体评分。
